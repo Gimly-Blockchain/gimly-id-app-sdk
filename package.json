@@ -1,0 +1,12 @@
+{
+  "name": "gimly-id-app-sdk",
+  "version": "0.0.1",
+  "description": "Typescript library and html/css bundles used to interact a the Gimly ID app to login with SSO and send and receive VCs",
+  "main": "index.js",
+  "repository": "git@github.com:Gimly-Blockchain/gimly-id-app-sdk.git",
+  "author": "hi@wealize.digital",
+  "license": "MIT",
+  "dependencies": {
+    "eosio-did": "^0.1.2"
+  }
+}
