@@ -7,6 +7,11 @@
   "author": "hi@wealize.digital",
   "license": "MIT",
   "dependencies": {
-    "eosio-did": "^0.1.2"
+    "@ethersproject/shims": "^5.4.0",
+    "@react-native-community/async-storage": "^1.12.1",
+    "eosio-did": "^0.1.2",
+    "ethers": "^5.4.6",
+    "react-native-get-random-values": "^1.7.0",
+    "react-native-keychain": "^7.0.0"
   }
 }
