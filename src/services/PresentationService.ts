@@ -59,7 +59,7 @@ export default class PresentationService {
     try {
       await vc.verify({ presentation, suite, unsignedPresentation: true });
     } catch (error) {
-      console.error("Verify Presentation Error", error);
+      console.error("Verify Unsigned Presentation Error", error);
     }
   }
 }
