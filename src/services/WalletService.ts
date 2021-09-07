@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 
 import { KeyChainData, setKeychainDataObject } from '../utils/keychain'
 
-export const createEncryptedWallet = async (
+const createEncryptedWallet = async (
   pin: string
 ): Promise<{
   mnemonicPhrase: string
@@ -31,3 +31,5 @@ export const createEncryptedWallet = async (
     throw new Error('Error when creating the wallet')
   }
 }
+
+export default createEncryptedWallet

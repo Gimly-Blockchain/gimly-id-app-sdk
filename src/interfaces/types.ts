@@ -14,9 +14,27 @@ export interface Credential {
   issuer: string;
   issuanceDate: string;
   credentialSubject: CredentialSubject;
+  proof: PresentationProof;
 }
 
 export interface CredentialSubject {
   id: string;
   alumniOf: string;
+}
+
+export interface Presentation {
+  "@context": string[];
+  tyoe: string[];
+  verifiableCredential: Credential[];
+  proof?: PresentationProof;
+}
+
+export interface PresentationProof {
+  type: string;
+  created: string;
+  verificationMethod: string;
+  proofPurpose: string;
+  challenge?: string;
+  jws?: string;
+  proofValue?: string;
 }

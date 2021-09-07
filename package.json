@@ -15,6 +15,10 @@
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
     "react-native-get-random-values": "^1.7.0",
-    "react-native-keychain": "^7.0.0"
+    "react-native-keychain": "^7.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.1"
   }
 }
