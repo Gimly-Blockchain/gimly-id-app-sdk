@@ -24,7 +24,7 @@ export interface CredentialSubject {
 
 export interface Presentation {
   "@context": string[];
-  tyoe: string[];
+  type: string[];
   verifiableCredential: Credential[];
   proof?: PresentationProof;
 }
