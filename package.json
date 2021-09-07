@@ -7,8 +7,11 @@
   "author": "hi@wealize.digital",
   "license": "MIT",
   "dependencies": {
+    "@digitalbazaar/ed25519-signature-2020": "^3.0.0",
+    "@digitalbazaar/ed25519-verification-key-2020": "^3.1.0",
     "@ethersproject/shims": "^5.4.0",
     "@react-native-community/async-storage": "^1.12.1",
+    "@sphereon/rn-vc-js": "^1.0.1-0",
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
     "react-native-get-random-values": "^1.7.0",
