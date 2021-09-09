@@ -2,7 +2,7 @@
 
 This is the class diagram for the Gimly SDK.
 
-Interfaces
+Interfaces and Services
 
 ```mermaid
 classDiagram
@@ -26,7 +26,7 @@ class Credential {
     proof: PresentationProof
 }
 Credential <|-- Presentation
-Credential <|-- CredentialSubject
+CredentialSubject <|-- Credential
 
 class CredentialSubject {
     <<interface>>
@@ -86,4 +86,8 @@ class Authority {
     (external EOSJS rpc interface)
 }
 
+class WalletService {
+    <<service>>
+    createEncryptedWallet(mnemonicPhrase: str) Promise(Object[mnemonicPhrase: str])
+}
 ```
