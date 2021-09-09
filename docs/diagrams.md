@@ -38,6 +38,8 @@ class Presentation {
     <<interface>>
     context: str[]
     type: str[]
+    id?: string;
+    holder?: string;
     verifiableCredential: Credential[]
     proof: PresentationProof
 }

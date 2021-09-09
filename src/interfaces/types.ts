@@ -31,13 +31,6 @@ export interface Presentation {
   proof?: PresentationProof;
 }
 
-export interface PresentationSigned extends Presentation {
-  "@context": string[];
-  type: string[];
-  verifiableCredential: Credential[];
-  proof?: PresentationProof;
-}
-
 export interface PresentationProof {
   type: string;
   created: string;

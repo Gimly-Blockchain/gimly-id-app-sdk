@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import { Ed25519VerificationKey2020 } from "@digitalbazaar/ed25519-verification-key-2020";
 import { Ed25519Signature2020 } from "@digitalbazaar/ed25519-signature-2020";
-import { Presentation, PresentationSigned } from "../interfaces/types";
+import { Presentation } from "../interfaces/types";
 
 export default class PresentationService {
   public static async createPresentation(
@@ -26,14 +26,14 @@ export default class PresentationService {
   public static async signPresentation(
     presentation: Presentation,
     challenge: string
-  ): Promise<PresentationSigned | boolean> {
+  ): Promise<Presentation | boolean> {
     const keyPair = await Ed25519VerificationKey2020.generate();
     const suite = new Ed25519Signature2020({ key: keyPair });
 
     if (!keyPair || !suite) return false;
 
     try {
-      const signedResult: PresentationSigned = await vc.signPresentation({
+      const signedResult: Presentation = await vc.signPresentation({
         presentation,
         suite,
         challenge,
