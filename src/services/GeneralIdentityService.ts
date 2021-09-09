@@ -5,7 +5,10 @@ import { IdentityData } from "../interfaces/types";
 import { getDid, saveDID } from "../utils/keychain";
 
 export default class GeneralIdentityService {
-  public static async createDid(data: IdentityData, auth: Authority) {
+  public static async createDid(
+    data: IdentityData,
+    auth: Authority
+  ): Promise<boolean> {
     const eosioDid = new EosioDID({
       chain: data.chain,
       signatureProvider: new JsSignatureProvider([data.privateKey]),
@@ -20,19 +23,20 @@ export default class GeneralIdentityService {
 
     if (didCreateResult) {
       await saveDID(didCreateResult);
+      return true;
     } else {
       throw new Error("Create DID error");
     }
   }
 
-  public static async getUserDid() {
+  public static async getUserDid(): Promise<boolean | any> {
     const did = await getDid();
-    if (!did) return null;
+    if (!did) return false;
 
     const eosioDid = new EosioDID({ fetch });
     const didResolveResult = await eosioDid.resolve(did);
 
-    return didResolveResult;
+    return didResolveResult.didDocument;
   }
 
   public static async updateDid(
@@ -40,7 +44,7 @@ export default class GeneralIdentityService {
     permission: string,
     parent: string,
     auth: Authority
-  ) {
+  ): Promise<boolean> {
     const signatureProvider = new JsSignatureProvider([data.privateKey]);
 
     const eosioDID = new EosioDID({
@@ -58,6 +62,7 @@ export default class GeneralIdentityService {
 
     if (didUpdateResult) {
       await saveDID(didUpdateResult);
+      return true;
     } else {
       throw new Error("Update DID error");
     }
