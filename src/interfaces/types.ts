@@ -25,6 +25,15 @@ export interface CredentialSubject {
 export interface Presentation {
   "@context": string[];
   type: string[];
+  id?: string;
+  holder?: string;
+  verifiableCredential: Credential[];
+  proof?: PresentationProof;
+}
+
+export interface PresentationSigned extends Presentation {
+  "@context": string[];
+  type: string[];
   verifiableCredential: Credential[];
   proof?: PresentationProof;
 }
