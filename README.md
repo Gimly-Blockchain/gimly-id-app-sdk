@@ -1,3 +1,4 @@
+![Captura de pantalla 2021-09-10 a las 10 04 20](https://user-images.githubusercontent.com/65024448/132821331-5a51985e-52d4-444d-9d51-d7b764723ff6.png)
 # Gimly ID Mobile SDK
 
 Typescript library and html/css bundles used to interact a the Gimly ID app to login with SSO and send and receive VCs
@@ -312,5 +313,5 @@ We will receive this response in case of error
 
 ## Class diagram
 
-![Captura de pantalla 2021-09-10 a las 9 51 04](https://user-images.githubusercontent.com/65024448/132819674-26173ac2-cc84-45a5-abd2-dd291fbc91c0.png)
+![Captura de pantalla 2021-09-10 a las 10 04 20](https://user-images.githubusercontent.com/65024448/132821350-401ab7fd-d401-4478-8dd7-4e0b708ea639.png)
 
