@@ -322,10 +322,6 @@ We will receive this response in case of error
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
 
-// optional `id` and `holder`
-const id = 'ebc6f1c2';
-const holder = 'did:ex:12345';
-
 const presentation = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
