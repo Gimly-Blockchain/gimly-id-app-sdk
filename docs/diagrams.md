@@ -59,26 +59,26 @@ Presentation <|-- PresentationProof
 
 class CredentialService {
     <<service>>
-    createCredential(credential: Credential)
-    verifyCredential(credential: Credential)
+    createCredential(credential: Credential) Promise(Credential | false)
+    verifyCredential(credential: Credential) Promise(boolean)
 }
 Credential <-- CredentialService
 
 class GeneralIdentityService {
     <<service>>
-    createDid(data: IdentityData, auth: Authority)
-    getUserDid()
-    updateDid()
+    createDid(data: IdentityData, auth: Authority) Promise(boolean)
+    getUserDid() Promise(boolean)
+    updateDid() Promise(boolean)
 }
 IdentityData <-- GeneralIdentityService
 Authority <-- GeneralIdentityService
 
 class PresentationService {
     <<service>>
-    createPresentation(verifiableCredential: Credential[], id: str, holder: str)
-    signPresentation(presentation: Presentation, challenge: str)
-    verifyPresentation(presentation: Presentation)
-    verifyUnsignedPresentation(presentation: Presentation)
+    createPresentation(verifiableCredential: Credential[], id: str, holder: str) Promise(Presentation)
+    signPresentation(presentation: Presentation, challenge: str) Promise(Presentation | boolean)
+    verifyPresentation(presentation: Presentation) Promise(boolean)
+    verifyUnsignedPresentation(presentation: Presentation) Promise(boolean)
 }
 Presentation <-- PresentationService
 Credential <-- PresentationService
