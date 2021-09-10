@@ -9,7 +9,6 @@ classDiagram
 class IdentityData {
     <<interface>>
     chain: str
-    signatureProvider: str
     publicKey: str
     privateKey: str
     accountName: str
