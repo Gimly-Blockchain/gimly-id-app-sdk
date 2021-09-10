@@ -500,4 +500,4 @@ We will receive this response in case of error
 
 ## Class diagram
 
-![Captura de pantalla 2021-09-10 a las 13 29 09](https://user-images.githubusercontent.com/65024448/132846838-3eb29fc5-e8ce-4be3-a0b7-c6c041358eec.png)
+![Captura de pantalla 2021-09-10 a las 13 37 16](https://user-images.githubusercontent.com/65024448/132847796-27eb7283-2c46-45b6-99ec-53fe084b37a4.png)
