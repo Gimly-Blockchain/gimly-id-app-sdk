@@ -232,6 +232,8 @@ This is the service responsible for generating and verifying presentations, usin
 interface  Presentation {
   "@context": string[];
   type: string[];
+  id?: string;
+  holder?: string;
   verifiableCredential: Credential[];
   proof?: PresentationProof;
 }
