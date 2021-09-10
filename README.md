@@ -322,6 +322,52 @@ We will receive this response in case of error
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
 
+// optional `id` and `holder`
+const id = 'ebc6f1c2';
+const holder = 'did:ex:12345';
+
+const presentation = vc.createPresentation({
+  verifiableCredential, id, holder
+});
+
+const presentation = {
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "ebc6f1c2",
+  "holder": "did:ex:12345",
+  "verifiableCredential": [
+    {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://www.w3.org/2018/credentials/examples/v1"
+      ],
+      "id": "http://example.edu/credentials/1872",
+      "type": [
+        "VerifiableCredential",
+        "AlumniCredential"
+      ],
+      "issuer": "https://example.edu/issuers/565049",
+      "issuanceDate": "2010-01-01T19:23:24Z",
+      "credentialSubject": {
+        "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+        "alumniOf": "<span lang=\"en\">Example University</span>"
+      },
+      "proof": {
+        "type": "Ed25519Signature2018",
+        "created": "2020-02-03T17:23:49Z",
+        "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..AUQ3AJ23WM5vMOWNtYKuqZBekRAOUibOMH9XuvOd39my1sO-X9R4QyAXLD2ospssLvIuwmQVhJa-F0xMOnkvBg",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "https://example.edu/issuers/keys/1"
+      }
+    }
+  ]
+}
+const challenge = 'mychallengeword'
+
 const signPresentation = async (presentation: Presentation, challenge: string) => {
   await GeneralIdentityService.signPresentation(presentation, challenge)
 }
