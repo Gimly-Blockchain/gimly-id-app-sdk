@@ -12,6 +12,7 @@ class IdentityData {
     publicKey: str
     privateKey: str
     accountName: str
+    nameKey: str
 }
 
 class Credential {
