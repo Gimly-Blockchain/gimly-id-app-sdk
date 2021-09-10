@@ -40,14 +40,13 @@ To create the wallet we will only have to provide a value to the function which 
 ```javascript
 import { createEncryptedWallet } from  'gimly-id-app-sdk'
 
+const pin = '123456';
+
 const savePin = async (pin: string) => {
   if (pin) {
     await createEncryptedWallet(pin)
   }
 }
-
-// This is the key that will be used to encrypt the wallet
-savePin('123456')
 ````
 
 We will receive this response in case of error
@@ -92,6 +91,16 @@ interface  Authority {
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
 
+const authority: Authority = {
+    threshold: 1,
+    keys: [{
+        key: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+        weight: 1,
+    }],
+    accounts: [],
+    waits: [],
+}
+
 const generateDid = async (data: IdentityData, auth: Authority) => {
   await GeneralIdentityService.createDid(data, auth)
 }
@@ -123,6 +132,19 @@ We will receive this response in case of error
 
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
+
+const authority: Authority = {
+    threshold: 1,
+    keys: [{
+        key: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+        weight: 1,
+    }],
+    accounts: [],
+    waits: [],
+}
+const permission = '';
+const parent = '';
+const 
 
 const resolveDID = async (
   data: IdentityData,
@@ -184,8 +206,26 @@ interface  PresentationProof {
 
 ### Generate credential
 
+When we generate a credential, we will specify the ontologies in the `@context` of the credential
+parameters, as stated in the w3 standard [link](https://w3c.github.io/vc-data-model/#credential-subject). [Examples](https://www.w3.org/2018/credentials/examples/v1) are provided to use own and third-party credentials ([schema.org](https://schema.org/Person)) or ([fhir](https://www.hl7.org/fhir/immunization.html)) [more examples](https://www.w3.org/2018/credentials/v1).
+
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
+
+const credential = {
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuer": "https://example.edu/issuers/565049",
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
+};
 
 const generateCredential = async (credential: Credential) => {
   await GeneralIdentityService.createCredential(credential)
@@ -245,6 +285,21 @@ interface  Presentation {
 
 ```javascript
 import { GeneralIdentityService } from  'gimly-id-app-sdk'
+
+const credential: Credential = {
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuer": "https://example.edu/issuers/565049",
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": "Example University"
+  }
+};
 
 // optional `id` and `holder`
 const createPresentation = async (
