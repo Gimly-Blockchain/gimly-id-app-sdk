@@ -16,7 +16,7 @@ export default class GeneralIdentityService {
 
     const didCreateResult = await eosioDid.create(
       data.nameKey,
-      data.newAccountName,
+      data.accountName,
       auth,
       auth
     );

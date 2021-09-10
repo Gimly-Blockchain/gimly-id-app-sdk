@@ -12,7 +12,7 @@ class IdentityData {
     signatureProvider: str
     publicKey: str
     privateKey: str
-    newAccountName: str
+    accountName: str
 }
 
 class Credential {

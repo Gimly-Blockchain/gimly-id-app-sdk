@@ -1,10 +1,9 @@
 export interface IdentityData {
   chain: string;
-  signatureProvider: string;
   publicKey: string;
   privateKey: string;
   nameKey: string;
-  newAccountName: string;
+  accountName: string;
 }
 
 export interface Credential {
