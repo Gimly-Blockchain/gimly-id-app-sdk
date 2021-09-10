@@ -312,4 +312,5 @@ We will receive this response in case of error
 
 ## Class diagram
 
-![Screenshot 2021-09-09 at 16 33 13](https://user-images.githubusercontent.com/488556/132705566-9defa1a2-5f9f-4fdb-871e-2eaf7bcec075.png)
+![Captura de pantalla 2021-09-10 a las 9 51 04](https://user-images.githubusercontent.com/65024448/132819674-26173ac2-cc84-45a5-abd2-dd291fbc91c0.png)
+
