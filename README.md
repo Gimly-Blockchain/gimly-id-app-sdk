@@ -326,10 +326,6 @@ import { GeneralIdentityService } from  'gimly-id-app-sdk'
 const id = 'ebc6f1c2';
 const holder = 'did:ex:12345';
 
-const presentation = vc.createPresentation({
-  verifiableCredential, id, holder
-});
-
 const presentation = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
