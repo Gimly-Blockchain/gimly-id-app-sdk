@@ -6,19 +6,57 @@
   "repository": "git@github.com:Gimly-Blockchain/gimly-id-app-sdk.git",
   "author": "hi@wealize.digital",
   "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:ci": "jest --coverage && codecov",
+    "format": "prettier --write \"src/**/*.[jt]s\"",
+    "lint": "eslint --ignore-pattern \"src/**/*.test.[jt]s\" \"src/**/*.[jt]s\""
+  },
+  "jest": {
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts",
+      "!**/node_modules/**",
+      "!**/__tests__/**"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.[jt]s"
+    ]
+  },
   "dependencies": {
     "@digitalbazaar/ed25519-signature-2020": "^3.0.0",
     "@digitalbazaar/ed25519-verification-key-2020": "^3.1.0",
     "@ethersproject/shims": "^5.4.0",
     "@react-native-community/async-storage": "^1.12.1",
+    "@sphereon/did-uni-client": "^0.2.0",
     "@sphereon/rn-vc-js": "^1.0.1-0",
+    "@types/bs58": "^4.0.1",
+    "bs58": "^4.0.1",
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
+    "ethr-did": "^2.1.4",
     "react-native-get-random-values": "^1.7.0",
     "react-native-keychain": "^7.0.0",
+    "text-encoding-polyfill": "^0.6.7",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.1"
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.1",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.4.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.2.2",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
   }
 }
