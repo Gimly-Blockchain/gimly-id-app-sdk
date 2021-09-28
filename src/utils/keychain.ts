@@ -1,9 +1,5 @@
 import * as Keychain from 'react-native-keychain'
 
-import LocalStorageService, {
-  STORAGE_KEYS
-} from '../services/LocalStorageService'
-
 export type KeyChainData = {
   wallet?: string
   privateKey?: string
@@ -26,7 +22,6 @@ export const saveDID = async (did: string): Promise<void> => {
   if (keychainObject) {
     keychainObject.did = did
     await setKeychainDataObject(keychainObject)
-    await LocalStorageService.storeBool(STORAGE_KEYS.IS_DID_CREATED, true)
   }
 }
 
