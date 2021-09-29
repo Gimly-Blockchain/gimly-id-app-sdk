@@ -1,7 +1,7 @@
 import { createEncryptedWallet } from '..'
 
-describe('Ethr DID should', () => {
-  it('succeed creating a DID on testnet', async () => {
+describe('wallet test', () => {
+  it('succeed creating a wallet', async () => {
     const pin = '123456'
     const isWalletCreated = await createEncryptedWallet(pin)
     const { mnemonicPhrase } = isWalletCreated
