@@ -13,7 +13,7 @@ export interface Credential {
   issuer: string
   issuanceDate: string
   credentialSubject: CredentialSubject
-  proof: PresentationProof
+  proof?: PresentationProof
 }
 
 export interface CredentialSubject {

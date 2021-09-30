@@ -17,11 +17,14 @@ export const setKeychainDataObject = async (
   ).catch(() => null)
 }
 
-export const saveDID = async (did: string): Promise<void> => {
+export const saveDID = async (did: string): Promise<boolean> => {
   const keychainObject = await getKeychainDataObject()
-  if (keychainObject) {
+  if (keychainObject && did) {
     keychainObject.did = did
     await setKeychainDataObject(keychainObject)
+    return true
+  } else {
+    return false
   }
 }
 
