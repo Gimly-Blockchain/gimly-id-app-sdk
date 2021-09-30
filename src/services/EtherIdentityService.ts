@@ -1,5 +1,3 @@
-import 'text-encoding-polyfill'
-import 'react-native-get-random-values'
 import { Resolver } from '@sphereon/did-uni-client/dist/resolver/Resolver'
 import { EthrDID } from 'ethr-did'
 import { getDid, saveDID } from '../utils/keychain'
