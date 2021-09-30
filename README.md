@@ -38,15 +38,15 @@ For more information, see:
 To create the wallet we will only have to provide a value to the function which must have a **string** type.
 
 ```javascript
-import { createEncryptedWallet } from "gimly-id-app-sdk";
+import { createEncryptedWallet } from 'gimly-id-app-sdk'
 
-const pin = "123456";
+const pin = '123456'
 
 const savePin = async (pin: string) => {
   if (pin) {
-    await createEncryptedWallet(pin);
+    await createEncryptedWallet(pin)
   }
-};
+}
 ```
 
 We will receive this response in case of error
@@ -88,31 +88,31 @@ interface Authority {
 ### Generate DID
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const identityData: IdentityData = {
-  chain: "eos:testnet:jungle",
-  publicKey: "PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut",
-  privateKey: "PVT_K1_27yS4sdX86VDahQRABMLCcDABH5Vzy8vgLLS7wBeKESyrXetMf",
-  nameKey: "didtester3334",
-  accountName: "newaccount11",
-};
+  chain: 'eos:testnet:jungle',
+  publicKey: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+  privateKey: 'PVT_K1_27yS4sdX86VDahQRABMLCcDABH5Vzy8vgLLS7wBeKESyrXetMf',
+  nameKey: 'didtester3334',
+  accountName: 'newaccount11'
+}
 
 const authority: Authority = {
   threshold: 1,
   keys: [
     {
-      key: "PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut",
-      weight: 1,
-    },
+      key: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+      weight: 1
+    }
   ],
   accounts: [],
-  waits: [],
-};
+  waits: []
+}
 
 const generateDid = async (data: IdentityData, auth: Authority) => {
-  await GeneralIdentityService.createDid(data, auth);
-};
+  await GeneralIdentityService.createDid(data, auth)
+}
 ```
 
 We will receive this response in case of error
@@ -124,11 +124,11 @@ We will receive this response in case of error
 ### Resolve DID
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const resolveDID = async () => {
-  await GeneralIdentityService.getUserDid();
-};
+  await GeneralIdentityService.getUserDid()
+}
 ```
 
 We will receive this response in case of error
@@ -140,29 +140,29 @@ We will receive this response in case of error
 ### Update DID
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const identityData: IdentityData = {
-  chain: "eos:testnet:jungle",
-  publicKey: "PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut",
-  privateKey: "PVT_K1_27yS4sdX86VDahQRABMLCcDABH5Vzy8vgLLS7wBeKESyrXetMf",
-  nameKey: "didtester3334",
-  accountName: "newaccount11",
-};
+  chain: 'eos:testnet:jungle',
+  publicKey: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+  privateKey: 'PVT_K1_27yS4sdX86VDahQRABMLCcDABH5Vzy8vgLLS7wBeKESyrXetMf',
+  nameKey: 'didtester3334',
+  accountName: 'newaccount11'
+}
 
 const authority: Authority = {
   threshold: 1,
   keys: [
     {
-      key: "PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut",
-      weight: 1,
-    },
+      key: 'PUB_K1_5irHomACLB3oRbkqdgYTdh1GHGt8yvzQ7no5dxvEw5eYAiUiut',
+      weight: 1
+    }
   ],
   accounts: [],
-  waits: [],
-};
-const permission = "active";
-const parent = "owner";
+  waits: []
+}
+const permission = 'active'
+const parent = 'owner'
 
 const updateDid = async (
   data: IdentityData,
@@ -170,14 +170,71 @@ const updateDid = async (
   parent: string,
   auth: Authority
 ) => {
-  await GeneralIdentityService.updateDid(data, permission, parent, auth);
-};
+  await GeneralIdentityService.updateDid(data, permission, parent, auth)
+}
 ```
 
 We will receive this response in case of error
 
 ```javascript
 // Update DID error
+```
+
+## DID (Ethr-DID)
+
+### Description
+
+This service is responsible for creating and modifying the user's DID using the following libraries:
+
+- [ethr-did](https://github.com/uport-project/ethr-did)
+
+### Usage
+
+#### Data Interface
+
+```javascript
+export interface EthrDid {
+  did: string
+  didDocument: string
+  privateKey: string
+  publicKey: string
+}
+```
+
+### Generate DID
+
+```javascript
+import { EtherIdentityService } from 'gimly-id-app-sdk'
+
+const generateDid = async () => {
+  await EtherIdentityService.createDid()
+}
+
+//This will save an EtherDid type object in the wallet.
+```
+
+We will receive this response in case of error
+
+```javascript
+// Create DID error
+```
+
+### Resolve DID
+
+```javascript
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
+
+const resolveDID = async () => {
+  await EtherIdentityService.getUserDid()
+}
+
+//This will return the didDocument
+```
+
+We will receive this response in case of error
+
+```javascript
+// resolve DID error
 ```
 
 ## Credentials
@@ -196,7 +253,7 @@ This service is responsible for generating and verifying the credentials
 
 ```javascript
 interface Credential {
-  "@context": string[];
+  '@context': string[];
   id: string;
   type: string[];
   issuer: string;
@@ -227,26 +284,26 @@ When we generate a credential, we will specify the ontologies in the `@context` 
 parameters, as stated in the w3 standard [link](https://w3c.github.io/vc-data-model/#credential-subject). [Examples](https://www.w3.org/2018/credentials/examples/v1) are provided to use own and third-party credentials ([schema.org](https://schema.org/Person)) or ([fhir](https://www.hl7.org/fhir/immunization.html)) [more examples](https://www.w3.org/2018/credentials/v1).
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const credential: Credential = {
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1",
+  '@context': [
+    'https://www.w3.org/2018/credentials/v1',
+    'https://www.w3.org/2018/credentials/examples/v1'
   ],
-  id: "https://example.com/credentials/1872",
-  type: ["VerifiableCredential", "AlumniCredential"],
-  issuer: "https://example.edu/issuers/565049",
-  issuanceDate: "2010-01-01T19:23:24Z",
+  id: 'https://example.com/credentials/1872',
+  type: ['VerifiableCredential', 'AlumniCredential'],
+  issuer: 'https://example.edu/issuers/565049',
+  issuanceDate: '2010-01-01T19:23:24Z',
   credentialSubject: {
-    id: "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    alumniOf: "Example University",
-  },
-};
+    id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+    alumniOf: 'Example University'
+  }
+}
 
 const generateCredential = async (credential: Credential) => {
-  await GeneralIdentityService.createCredential(credential);
-};
+  await GeneralIdentityService.createCredential(credential)
+}
 ```
 
 We will receive this response in case of error
@@ -312,7 +369,7 @@ This is the service responsible for generating and verifying presentations, usin
 
 ```javascript
 interface Presentation {
-  "@context": string[];
+  '@context': string[];
   type: string[];
   id?: string;
   holder?: string;
@@ -372,39 +429,39 @@ We will receive this response in case of error
 ### Sign presentation
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const presentation: Presentation = {
-  "@context": ["https://www.w3.org/2018/credentials/v1"],
-  type: ["VerifiablePresentation"],
-  id: "ebc6f1c2",
-  holder: "did:ex:12345",
+  '@context': ['https://www.w3.org/2018/credentials/v1'],
+  type: ['VerifiablePresentation'],
+  id: 'ebc6f1c2',
+  holder: 'did:ex:12345',
   verifiableCredential: [
     {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://www.w3.org/2018/credentials/examples/v1",
+      '@context': [
+        'https://www.w3.org/2018/credentials/v1',
+        'https://www.w3.org/2018/credentials/examples/v1'
       ],
-      id: "http://example.edu/credentials/1872",
-      type: ["VerifiableCredential", "AlumniCredential"],
-      issuer: "https://example.edu/issuers/565049",
-      issuanceDate: "2010-01-01T19:23:24Z",
+      id: 'http://example.edu/credentials/1872',
+      type: ['VerifiableCredential', 'AlumniCredential'],
+      issuer: 'https://example.edu/issuers/565049',
+      issuanceDate: '2010-01-01T19:23:24Z',
       credentialSubject: {
-        id: "did:example:ebfeb1f712ebc6f1c276e12ec21",
-        alumniOf: '<span lang="en">Example University</span>',
-      },
-    },
-  ],
-};
+        id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+        alumniOf: '<span lang="en">Example University</span>'
+      }
+    }
+  ]
+}
 
-const challenge = "mychallengeword";
+const challenge = 'mychallengeword'
 
 const signPresentation = async (
   presentation: Presentation,
   challenge: string
 ) => {
-  await GeneralIdentityService.signPresentation(presentation, challenge);
-};
+  await GeneralIdentityService.signPresentation(presentation, challenge)
+}
 ```
 
 We will receive this response in case of error
@@ -416,41 +473,41 @@ We will receive this response in case of error
 ### Verify presentation
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const presentation: Presentation = {
-  "@context": ["https://www.w3.org/2018/credentials/v1"],
-  type: ["VerifiablePresentation"],
-  id: "ebc6f1c2",
-  holder: "did:ex:12345",
+  '@context': ['https://www.w3.org/2018/credentials/v1'],
+  type: ['VerifiablePresentation'],
+  id: 'ebc6f1c2',
+  holder: 'did:ex:12345',
   verifiableCredential: [
     {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://www.w3.org/2018/credentials/examples/v1",
+      '@context': [
+        'https://www.w3.org/2018/credentials/v1',
+        'https://www.w3.org/2018/credentials/examples/v1'
       ],
-      id: "http://example.edu/credentials/1872",
-      type: ["VerifiableCredential", "AlumniCredential"],
-      issuer: "https://example.edu/issuers/565049",
-      issuanceDate: "2010-01-01T19:23:24Z",
+      id: 'http://example.edu/credentials/1872',
+      type: ['VerifiableCredential', 'AlumniCredential'],
+      issuer: 'https://example.edu/issuers/565049',
+      issuanceDate: '2010-01-01T19:23:24Z',
       credentialSubject: {
-        id: "did:example:ebfeb1f712ebc6f1c276e12ec21",
-        alumniOf: '<span lang="en">Example University</span>',
+        id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+        alumniOf: '<span lang="en">Example University</span>'
       },
       proof: {
-        type: "Ed25519Signature2018",
-        created: "2020-02-03T17:23:49Z",
-        jws: "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..AUQ3AJ23WM5vMOWNtYKuqZBekRAOUibOMH9XuvOd39my1sO-X9R4QyAXLD2ospssLvIuwmQVhJa-F0xMOnkvBg",
-        proofPurpose: "assertionMethod",
-        verificationMethod: "https://example.edu/issuers/keys/1",
-      },
-    },
-  ],
-};
+        type: 'Ed25519Signature2018',
+        created: '2020-02-03T17:23:49Z',
+        jws: 'eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..AUQ3AJ23WM5vMOWNtYKuqZBekRAOUibOMH9XuvOd39my1sO-X9R4QyAXLD2ospssLvIuwmQVhJa-F0xMOnkvBg',
+        proofPurpose: 'assertionMethod',
+        verificationMethod: 'https://example.edu/issuers/keys/1'
+      }
+    }
+  ]
+}
 
 const verifyPresentation = async (presentation: Presentation) => {
-  await GeneralIdentityService.verifyPresentation(presentation);
-};
+  await GeneralIdentityService.verifyPresentation(presentation)
+}
 ```
 
 We will receive this response in case of error
@@ -462,34 +519,34 @@ We will receive this response in case of error
 ### Verify unsigned presentation
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const presentation: Presentation = {
-  "@context": ["https://www.w3.org/2018/credentials/v1"],
-  type: ["VerifiablePresentation"],
-  id: "ebc6f1c2",
-  holder: "did:ex:12345",
+  '@context': ['https://www.w3.org/2018/credentials/v1'],
+  type: ['VerifiablePresentation'],
+  id: 'ebc6f1c2',
+  holder: 'did:ex:12345',
   verifiableCredential: [
     {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://www.w3.org/2018/credentials/examples/v1",
+      '@context': [
+        'https://www.w3.org/2018/credentials/v1',
+        'https://www.w3.org/2018/credentials/examples/v1'
       ],
-      id: "http://example.edu/credentials/1872",
-      type: ["VerifiableCredential", "AlumniCredential"],
-      issuer: "https://example.edu/issuers/565049",
-      issuanceDate: "2010-01-01T19:23:24Z",
+      id: 'http://example.edu/credentials/1872',
+      type: ['VerifiableCredential', 'AlumniCredential'],
+      issuer: 'https://example.edu/issuers/565049',
+      issuanceDate: '2010-01-01T19:23:24Z',
       credentialSubject: {
-        id: "did:example:ebfeb1f712ebc6f1c276e12ec21",
-        alumniOf: '<span lang="en">Example University</span>',
-      },
-    },
-  ],
-};
+        id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+        alumniOf: '<span lang="en">Example University</span>'
+      }
+    }
+  ]
+}
 
 const verifyUnsignedPresentation = async (presentation: Presentation) => {
-  await GeneralIdentityService.verifyUnsignedPresentation(presentation);
-};
+  await GeneralIdentityService.verifyUnsignedPresentation(presentation)
+}
 ```
 
 We will receive this response in case of error
