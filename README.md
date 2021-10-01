@@ -558,3 +558,21 @@ We will receive this response in case of error
 ## Class diagram
 
 ![Captura de pantalla 2021-09-10 a las 13 37 16](https://user-images.githubusercontent.com/65024448/132847796-27eb7283-2c46-45b6-99ec-53fe084b37a4.png)
+
+
+## Running Tests
+
+To launch the tests you need to use one of the following scripts:
+
+Will install all repositories
+```
+yarn install
+```
+Will run all tests with jest
+```
+yarn test
+```
+will run jest with the coverage report (this will create a new directory to be able to examine the report in more detail)
+```
+yarn test-with-coverage
+```
