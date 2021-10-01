@@ -572,7 +572,7 @@ Will run all tests with jest
 ```
 yarn test
 ```
-will run jest with the coverage report (this will create a new directory to be able to examine the report in more detail)
+Will run jest with the coverage report (this will create a new directory to be able to examine the report in more detail)
 ```
 yarn test-with-coverage
 ```
