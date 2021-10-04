@@ -20,6 +20,7 @@
     "@sphereon/did-uni-client": "^0.2.0",
     "@sphereon/rn-vc-js": "^1.0.1-0",
     "@types/bs58": "^4.0.1",
+    "DIDComm-js": "https://github.com/decentralized-identity/DIDComm-js.git",
     "bs58": "^4.0.1",
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
