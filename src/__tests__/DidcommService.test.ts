@@ -14,6 +14,7 @@ describe('DidcommJs should', () => {
 
   it('success packing message', async () => {
     const message = 'I AM A PRIVATE MESSAGE'
+
     const isPackMsg = await DidcommService.packMsg(
       message,
       bobMock.publicKey,
@@ -52,7 +53,8 @@ describe('DidcommJs should', () => {
       aliceMock
     )
     const { message } = await DidcommService.unPackMsg(packedMsg, bobMock)
-    expect(message).toEqual(message)
+
+    expect(message).toEqual(newMessage)
   })
 
   it('error packs and unpacks a message', async () => {
