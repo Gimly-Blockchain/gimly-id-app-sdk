@@ -6,9 +6,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   testPathIgnorePatterns: ['\\.snap$', '<rootDir>/node_modules/'],
-  transformIgnorePatterns: [
-    '/node_modules/(?!(@react-native|react-native)/).*/'
-  ],
+  transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
   cacheDirectory: '.jest/cache',
   globals: {
     'ts-jest': {
