@@ -1026,28 +1026,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@digitalbazaar/ed25519-signature-2020@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@digitalbazaar/ed25519-signature-2020/-/ed25519-signature-2020-3.0.0.tgz#d8b6aefe83c873528ac35c45bb5b056a4c0b07e3"
-  integrity sha512-Va4mJlklWe7F0LwFwcZmJszeSYkWkxnsYXpmwgqPiJyxhnp0dgOPJxWRWoxsc1809mBgAxxeD+KGnjx6oFYf2Q==
-  dependencies:
-    "@digitalbazaar/ed25519-verification-key-2020" "^3.0.0"
-    base58-universal "^1.0.0"
-    ed25519-signature-2018-context "^1.1.0"
-    ed25519-signature-2020-context "^1.0.1"
-    esm "^3.2.25"
-    jsonld-signatures "^9.0.1"
-
-"@digitalbazaar/ed25519-verification-key-2020@^3.0.0", "@digitalbazaar/ed25519-verification-key-2020@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@digitalbazaar/ed25519-verification-key-2020/-/ed25519-verification-key-2020-3.1.0.tgz#d18ef69985a5c8a594fc11b141c89565a98012cd"
-  integrity sha512-r7FIIMQ+cT/2suJfpX2ECV0gVVxhRz77tVMmSQZrfPD3NeCWAMW95VXWIe9t12iNv0vO5dS6GF8J3DI5hk9dZQ==
-  dependencies:
-    "@stablelib/ed25519" "^1.0.1"
-    base58-universal "^1.0.0"
-    crypto-ld "^5.1.0"
-    esm "^3.2.25"
-
 "@digitalbazaar/http-client@^1.1.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@digitalbazaar/http-client/-/http-client-1.2.0.tgz#1ea3661e77000a15bd892a294f20dc6cc5d1c93b"
@@ -1871,6 +1849,14 @@
     serialize-error "^8.0.1"
     sodium-javascript "^0.6.1"
 
+"@sphereon/rn-secp256k1-key-pair@https://github.com/Sphereon-Opensource/rn-secp256k1-key-pair.git":
+  version "1.1.1-0"
+  resolved "https://github.com/Sphereon-Opensource/rn-secp256k1-key-pair.git#92431673ad612b98212748f7845475227eaff497"
+  dependencies:
+    crypto-js "^4.1.1"
+    elliptic "^6.5.4"
+    node-forge "^0.8.5"
+
 "@sphereon/rn-vc-js@^1.0.1-0":
   version "1.0.1-0"
   resolved "https://registry.yarnpkg.com/@sphereon/rn-vc-js/-/rn-vc-js-1.0.1-0.tgz#38fcdf3017d8af6b385878ec966d864e686c4031"
@@ -1932,7 +1918,7 @@
   resolved "https://registry.yarnpkg.com/@stablelib/constant-time/-/constant-time-1.0.1.tgz#bde361465e1cf7b9753061b77e376b0ca4c77e35"
   integrity sha512-tNOs3uD0vSJcK6z1fvef4Y+buN7DXhzHDPqRLSXUel1UfqMB1PWNsnnAezrKfEwTLpN0cGH2p9NNjs6IqeD0eg==
 
-"@stablelib/ed25519@^1.0.1", "@stablelib/ed25519@^1.0.2":
+"@stablelib/ed25519@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@stablelib/ed25519/-/ed25519-1.0.2.tgz#937a88a2f73a71d9bdc3ea276efe8954776ae0f4"
   integrity sha512-FtnvUwvKbp6l1dNcg4CswMAVFVu/nzLK3oC7/PRtjYyHbWsIkD8j+5cjXHmwcCpdCpRCaTGACkEhhMQ1RcdSOQ==
@@ -2674,13 +2660,6 @@ base-x@^3.0.2, base-x@^3.0.6:
   dependencies:
     safe-buffer "^5.0.1"
 
-base58-universal@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/base58-universal/-/base58-universal-1.0.0.tgz#6da5b89c2c9be8fc40bcf6b3a5a03f123ad3825e"
-  integrity sha512-v0Ja4jwaQP8gBZPNXpfaXlLht2ed/Gp3AsVUZXtlZgY1qbKS0CjxvYs43U0Gh00zbVc1neMe+q/ULJ7ubVyB+w==
-  dependencies:
-    esm "^3.2.25"
-
 base64-js@^1.1.2, base64-js@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
@@ -3199,6 +3178,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+
 crypto-ld@^3.7.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/crypto-ld/-/crypto-ld-3.9.0.tgz#4f42849a143b5d65f28b018d80bc0fee6cd37ba8"
@@ -3210,11 +3194,6 @@ crypto-ld@^3.7.0:
     semver "^6.2.0"
   optionalDependencies:
     sodium-native "^3.2.0"
-
-crypto-ld@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/crypto-ld/-/crypto-ld-5.1.0.tgz#fbc1344c553f10aa1bcfc9d94c8c161a56c07150"
-  integrity sha512-Dy1QoQzj+2K6UlGZ9l34cPp+g/YHOd+r3/DXXQTnnz5btGb0vqDlkZBn+icYmwntEmW0bvGVwFWvcwZSbk1EEQ==
 
 cssom@^0.4.4:
   version "0.4.4"
@@ -3421,16 +3400,6 @@ domexception@^2.0.1:
   integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
   dependencies:
     webidl-conversions "^5.0.0"
-
-ed25519-signature-2018-context@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ed25519-signature-2018-context/-/ed25519-signature-2018-context-1.1.0.tgz#68002ea7497c32e8170667cfd67468dedf7d220e"
-  integrity sha512-ppDWYMNwwp9bploq0fS4l048vHIq41nWsAbPq6H4mNVx9G/GxW3fwg4Ln0mqctP13MoEpREK7Biz8TbVVdYXqA==
-
-ed25519-signature-2020-context@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ed25519-signature-2020-context/-/ed25519-signature-2020-context-1.1.0.tgz#b2f724f07db154ddf0fd6605410d88736e56fd07"
-  integrity sha512-dBGSmoUIK6h2vadDctrDnhhTO01PR2hJk0mRNEfrRDPCjaIwrfy4J+eziEQ9Q1m8By4f/CSRgKM1h53ydKfdNg==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -3683,7 +3652,7 @@ eslint@^7.32.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-esm@^3.2.22, esm@^3.2.25:
+esm@^3.2.22:
   version "3.2.25"
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
   integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
@@ -5301,15 +5270,6 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jsonld-signatures@^9.0.1:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/jsonld-signatures/-/jsonld-signatures-9.3.0.tgz#4da0ac56c14ece9e0bf1dc02bdf419aabd5f5ce1"
-  integrity sha512-I52f8AmCoaUuM7gbFUGu9Ir3odGWOmQPlNPE/VYbiRrC3UfIRig0hYhNFkcVhe0ZXsE5L0if6Fo5SutKFqs3uQ==
-  dependencies:
-    jsonld "^5.0.0"
-    security-context "^4.0.0"
-    serialize-error "^8.0.1"
-
 jsonld@^5.0.0, jsonld@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-5.2.0.tgz#d1e8af38a334cb95edf0f2ae4e2b58baf8d2b5a9"
@@ -5984,6 +5944,11 @@ node-fetch@^2.2.0, node-fetch@^2.6.0, node-fetch@^2.6.1:
   integrity sha512-mmlIVHJEu5rnIxgEgez6b9GgWXbkZj5YZ7fx+2r94a2E+Uirsp6HsPTPlomfdHtpt/B0cdKviwkoaM6pyvUOpQ==
   dependencies:
     whatwg-url "^5.0.0"
+
+node-forge@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.8.5.tgz#57906f07614dc72762c84cef442f427c0e1b86ee"
+  integrity sha512-vFMQIWt+J/7FLNyKouZ9TazT74PRV3wgv9UT4cRjC8BffxFbKXkgIWR42URCPSnHm/QDz6BOlb2Q0U4+VQT67Q==
 
 node-forge@^0.9.1:
   version "0.9.2"
@@ -6806,11 +6771,6 @@ scrypt-js@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-3.0.1.tgz#d314a57c2aef69d1ad98a138a21fe9eafa9ee312"
   integrity sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==
-
-security-context@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/security-context/-/security-context-4.0.0.tgz#e73f5d22bee9c7699a02eaaced359d001dc948e9"
-  integrity sha512-yiDCS7tpKQl6p4NG57BdKLTSNLFfj5HosBIzXBl4jZf/qorJzSzbEUIdLhN+vVYgyLlvjixY8DPPTgqI8zvNCA==
 
 semver@7.0.0:
   version "7.0.0"
