@@ -19,5 +19,7 @@ describe('CredentialService', () => {
   it('create vc', async () => {
     const isCredential = await CredentialServices.createCredential(credential)
     console.log(isCredential)
+    const verifyResult = await CredentialServices.verifyCredential(isCredential)
+    console.log(verifyResult)
   })
 })
