@@ -555,10 +555,9 @@ We will receive this response in case of error
 // Verify Unsigned Presentation Error
 ```
 
-## Class diagram
+# Class diagram
 
-![Captura de pantalla 2021-09-10 a las 13 37 16](https://user-images.githubusercontent.com/65024448/132847796-27eb7283-2c46-45b6-99ec-53fe084b37a4.png)
-
+![Captura de pantalla 2021-10-06 a las 11 33 21](https://user-images.githubusercontent.com/65024448/136177942-59c8562f-1833-4949-968e-b51f4e3e7967.png)
 
 ## Running Tests
 
