@@ -1,42 +1,55 @@
 import vc from '@sphereon/rn-vc-js'
 
-import Secp256k1KeyPair from '@sphereon/rn-secp256k1-key-pair'
-import { Credential } from '../interfaces/types'
+import {
+  Credential,
+  CredentialKeyPair,
+  VerifyCredentialResult
+} from '../interfaces/types'
+import { EcdsaSecp256k1VerificationKey2019 } from '@sphereon/rn-ecdsa-secp256k1-verification-key-2019'
+import { EcdsaSecp256k1Signature2019 } from '@sphereon/rn-ecdsa-secp256k1-signature-2019'
 
 export default class CredentialServices {
   public static async createCredential(
-    credential: Credential
-  ): Promise<false | Credential> {
-    const keyPair = await Secp256k1KeyPair.generate()
-    keyPair.id = 'https://example.edu/issuers/keys/1'
-    keyPair.controller = 'https://example.com/i/carol'
-    const suite = new Secp256k1KeyPair(keyPair)
+    credential: Credential,
+    credentialKeyPair: CredentialKeyPair
+  ): Promise<Credential> {
+    const keyPair = new EcdsaSecp256k1VerificationKey2019(credentialKeyPair)
+    const suite = new EcdsaSecp256k1Signature2019({
+      key: keyPair
+    })
 
-    if (!keyPair || !suite) return false
+    if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
       const createResult: Credential = await vc.issue({ credential, suite })
+
       return createResult
     } catch (error) {
-      console.error('Create Credential Error', error)
-      return false
+      throw new Error('Create Credential Error')
     }
   }
 
   public static async verifyCredential(
-    credential: Credential
-  ): Promise<boolean> {
-    const keyPair = await Secp256k1KeyPair.generate()
-    const suite = new Secp256k1KeyPair(keyPair)
+    credential: Credential,
+    credentialKeyPair: CredentialKeyPair
+  ): Promise<VerifyCredentialResult> {
+    const keyPair = new EcdsaSecp256k1VerificationKey2019(credentialKeyPair)
+    const suite = new EcdsaSecp256k1Signature2019({
+      key: keyPair
+    })
 
-    if (!keyPair || !suite) return false
+    if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
-      await vc.verifyCredential({ credential, suite })
-      return true
+      const verifiedCredential: VerifyCredentialResult =
+        await vc.verifyCredential({
+          credential,
+          suite
+        })
+
+      return verifiedCredential
     } catch (error) {
-      console.error('Verify Credential Error', error)
-      return false
+      throw new Error('Verify Credential Error')
     }
   }
 }

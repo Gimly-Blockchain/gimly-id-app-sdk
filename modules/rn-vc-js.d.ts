@@ -1,1 +1,1 @@
-declare module "@sphereon/rn-vc-js";
+declare module '@sphereon/rn-vc-js'

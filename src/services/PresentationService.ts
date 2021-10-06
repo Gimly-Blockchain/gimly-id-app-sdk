@@ -1,7 +1,8 @@
 import vc from '@sphereon/rn-vc-js'
 import { v4 as uuid } from 'uuid'
 
-import Secp256k1KeyPair from '@sphereon/rn-secp256k1-key-pair'
+//TODO - Change repository
+//import Secp256k1KeyPair from '@sphereon/rn-secp256k1-key-pair'
 import { Presentation } from '../interfaces/types'
 
 export default class PresentationService {
