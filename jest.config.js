@@ -2,7 +2,7 @@ module.exports = {
   preset: 'react-native',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    'base58-universal': 'base58-universal/main.js',
+    'base58-universal': 'base58-universal/main.js'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',

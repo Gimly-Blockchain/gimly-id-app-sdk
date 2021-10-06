@@ -1,19 +1,5 @@
 import { DIDComm } from 'DIDComm-js'
-
-export interface KeyPair {
-  keyType: KeyType
-  privateKey: Uint8Array
-  publicKey: Uint8Array
-}
-
-export interface IUnpackedMsg {
-  message: string
-  recipientKey: string
-  senderKey: string
-  nonRepudiableVerification: boolean
-}
-
-type KeyType = 'curve25519' | 'ed25519' | 'x25519'
+import { IUnpackedMsg, KeyPair } from '../interfaces/didcomm.interface'
 
 export default class DidcommService {
   public static async packMsg(
