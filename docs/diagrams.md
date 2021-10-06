@@ -88,8 +88,26 @@ class Authority {
     (external EOSJS rpc interface)
 }
 
-class WalletService {
+class DidcommService {
     <<service>>
-    createEncryptedWallet(mnemonicPhrase: str) Promise(Object[mnemonicPhrase: str])
+    packMsg(message: string, issuerPrivateKey: Uint8Array, receiverKeyPair: KeyPair) Promise(string)
+    unPackMsg(packMsg: string, issuerKeyPair: KeyPair) Promise(IUnpackedMsg)
+}
+KeyPair <-- DidcommService
+IUnpackedMsg <-- DidcommService
+
+class KeyPair {
+    <<interface>>
+    keyType: KeyType
+    privateKey: Uint8Array
+    publicKey: Uint8Array
+}
+
+class IUnpackedMsg {
+    <<interface>>
+    message: string
+    recipientKey: string
+    senderKey: string
+    nonRepudiableVerification: boolean
 }
 ```
