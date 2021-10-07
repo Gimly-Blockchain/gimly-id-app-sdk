@@ -30,7 +30,6 @@ export default class CredentialServices {
 
       return createResult
     } catch (error) {
-      console.log(JSON.stringify(error))
       throw new Error('Create Credential Error')
     }
   }

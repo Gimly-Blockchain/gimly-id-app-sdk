@@ -31,8 +31,16 @@ describe('CredentialService', () => {
       keyPair
     )
 
-    console.log('credential', isCredential)
     expect(isCredential).toBeTruthy()
+  })
+
+  it('should error at create vc', async () => {
+    try {
+      await CredentialServices.createCredential(undefined, keyPair)
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toEqual('Create Credential Error')
+    }
   })
 
   it('should verify vc', async () => {
@@ -45,17 +53,26 @@ describe('CredentialService', () => {
       isCredential,
       keyPair
     )
-    console.log('verifyResult', verifyResult)
+
     expect(verifyResult.verified).toBeTruthy()
   })
 
   it('should error at verify vc', async () => {
+    try {
+      await CredentialServices.verifyCredential(undefined, keyPair)
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toEqual('Verify Credential Error')
+    }
+  })
+
+  it('should error at verify vc - wrong issuer', async () => {
     credentialMock.issuer = 'did:ethr:nope'
+
     const isCredential = await CredentialServices.createCredential(
       credentialMock,
       keyPair
     )
-
     const verifyResult = await CredentialServices.verifyCredential(
       isCredential,
       keyPair

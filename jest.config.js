@@ -19,5 +19,6 @@ module.exports = {
   clearMocks: true,
   setupFilesAfterEnv: ['./jest.setup.js'],
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/node_modules/**'],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  coveragePathIgnorePatterns: ['<rootDir>/src/mocks/']
 }
