@@ -7,6 +7,7 @@ import {
 } from '../interfaces/types'
 import { EcdsaSecp256k1VerificationKey2019 } from '@sphereon/rn-ecdsa-secp256k1-verification-key-2019'
 import { EcdsaSecp256k1Signature2019 } from '@sphereon/rn-ecdsa-secp256k1-signature-2019'
+import documentLoader from '../utils/Documentloader'
 
 export default class CredentialServices {
   public static async createCredential(
@@ -21,10 +22,15 @@ export default class CredentialServices {
     if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
-      const createResult: Credential = await vc.issue({ credential, suite })
+      const createResult: Credential = await vc.issue({
+        credential,
+        suite,
+        documentLoader
+      })
 
       return createResult
     } catch (error) {
+      console.log(JSON.stringify(error))
       throw new Error('Create Credential Error')
     }
   }
@@ -44,7 +50,8 @@ export default class CredentialServices {
       const verifiedCredential: VerifyCredentialResult =
         await vc.verifyCredential({
           credential,
-          suite
+          suite,
+          documentLoader
         })
 
       return verifiedCredential

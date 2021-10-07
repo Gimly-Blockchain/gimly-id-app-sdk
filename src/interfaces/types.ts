@@ -10,15 +10,21 @@ export interface Credential {
   '@context': string[]
   id: string
   type: string[]
-  issuer: string
+  issuer: string | Issuer
   issuanceDate: string
   credentialSubject: CredentialSubject
   proof?: PresentationProof
+  [x: string]: unknown
+}
+
+export interface Issuer {
+  id: string
+  [x: string]: unknown
 }
 
 export interface CredentialSubject {
   id: string
-  alumniOf: string
+  [x: string]: unknown
 }
 
 export interface CredentialKeyPair {
