@@ -1,8 +1,8 @@
 import vc from '@sphereon/rn-vc-js'
 import { v4 as uuid } from 'uuid'
 
-import { Ed25519VerificationKey2020 } from '@digitalbazaar/ed25519-verification-key-2020'
-//import { Ed25519Signature2020 } from '@digitalbazaar/ed25519-signature-2020'
+//TODO - Change repository
+//import Secp256k1KeyPair from '@sphereon/rn-secp256k1-key-pair'
 import { Presentation } from '../interfaces/types'
 
 export default class PresentationService {
@@ -27,8 +27,8 @@ export default class PresentationService {
     presentation: Presentation,
     challenge: string
   ): Promise<Presentation | boolean> {
-    const keyPair = await Ed25519VerificationKey2020.generate()
-    const suite = new Ed25519Signature2020({ key: keyPair })
+    const keyPair = await Secp256k1KeyPair.generate()
+    const suite = new Secp256k1KeyPair(keyPair)
 
     if (!keyPair || !suite) return false
 
@@ -48,8 +48,8 @@ export default class PresentationService {
   public static async verifyPresentation(
     presentation: Presentation
   ): Promise<boolean> {
-    const keyPair = await Ed25519VerificationKey2020.generate()
-    const suite = new Ed25519Signature2020({ key: keyPair })
+    const keyPair = await Secp256k1KeyPair.generate()
+    const suite = new Secp256k1KeyPair(keyPair)
     const challenge = uuid()
 
     if (!keyPair || !suite) return false
@@ -65,8 +65,8 @@ export default class PresentationService {
   public static async verifyUnsignedPresentation(
     presentation: Presentation
   ): Promise<boolean> {
-    const keyPair = await Ed25519VerificationKey2020.generate()
-    const suite = new Ed25519Signature2020({ key: keyPair })
+    const keyPair = await Secp256k1KeyPair.generate()
+    const suite = new Secp256k1KeyPair(keyPair)
 
     if (!keyPair || !suite) return false
 

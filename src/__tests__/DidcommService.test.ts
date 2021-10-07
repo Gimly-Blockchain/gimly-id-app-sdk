@@ -1,5 +1,6 @@
 import { DIDComm } from 'DIDComm-js'
-import DidcommService, { KeyPair } from '../services/DidcommService'
+import { KeyPair } from '../interfaces/didcomm.interface'
+import DidcommService from '../services/DidcommService'
 
 describe('DidcommJs should', () => {
   let bobMock: KeyPair

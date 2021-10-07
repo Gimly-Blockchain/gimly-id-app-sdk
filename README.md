@@ -253,18 +253,18 @@ This service is responsible for generating and verifying the credentials
 
 ```javascript
 interface Credential {
-  '@context': string[];
-  id: string;
-  type: string[];
-  issuer: string;
-  issuanceDate: string;
-  credentialSubject: CredentialSubject;
-  proof: PresentationProof;
+  '@context': string[]
+  id: string
+  type: string[]
+  issuer: string | Issuer
+  issuanceDate: string
+  credentialSubject: CredentialSubject
+  proof?: PresentationProof
 }
 
 interface CredentialSubject {
-  id: string;
-  alumniOf: string;
+  id: string
+  [custom: string]: unknown
 }
 
 interface PresentationProof {
@@ -301,7 +301,19 @@ const credential: Credential = {
   }
 }
 
-const generateCredential = async (credential: Credential) => {
+const keyPair: CredentialKeyPair = {
+  publicKeyBase58:
+    'MmVhTd7VDGeowTYotyUyjTfzkweJokFNYStRpJmmF3oMrnijYy7XE9SyymFJVsn4ViUrSLKXvppG5G8j2fcgjLeS',
+  privateKeyBase58: 'F8v7zWWPTVPid1Gd6CidHe9815jNWZB6gQFYff3TsTWJ',
+  id: 'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
+  controller:
+    'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98'
+}
+
+const generateCredential = async (
+  credential: Credential,
+  keyPair: CredentialKeyPair
+) => {
   await GeneralIdentityService.createCredential(credential)
 }
 ```
@@ -315,36 +327,43 @@ We will receive this response in case of error
 ### Verify credential
 
 ```javascript
-import { GeneralIdentityService } from "gimly-id-app-sdk";
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const credential: Credential = {
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
+  '@context': [
+    'https://www.w3.org/2018/credentials/v1',
+    'https://www.w3.org/2018/credentials/examples/v1'
   ],
-  "id": "https://example.com/credentials/1872",
-  "type": ["VerifiableCredential", "AlumniCredential"],
-  "issuer": "https://example.edu/issuers/565049",
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
+  id: 'https://example.com/credentials/1872',
+  type: ['VerifiableCredential', 'AlumniCredential'],
+  issuer: 'https://example.edu/issuers/565049',
+  issuanceDate: '2010-01-01T19:23:24Z',
+  credentialSubject: {
+    id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+    alumniOf: 'Example University'
   },
-  "proof": {
-      "type": "RsaSignature2018",
-      "created": "2017-06-18T21:19:10Z",
-      "proofPurpose": "assertionMethod",
-      "verificationMethod": "https://example.edu/issuers/keys/1",
-      "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5X
-        sITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUc
-        X16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtj
-        PAYuNzVBAh4vGHSrQyHUdBBPM"
-    }
-};
+  proof: {
+    type: 'EcdsaSecp256k1Signature2019',
+    created: '2021-10-07T10:56:58Z',
+    verificationMethod:'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
+    proofPurpose: 'assertionMethod',
+    jws: 'eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..Q_HvWN3cF4zqcLdlC9g2lDp522yqA-FyH3WHOtYAy-8af6urfy-CsWa2S30fzh1yv0A3DGt1LAr6ZW0NWxEz-A'
+  }
+}
 
-const verifyCredential = async (credential: Credential) => {
-  await GeneralIdentityService.verifyCredential(credential);
-};
+const keyPair: CredentialKeyPair = {
+  publicKeyBase58: 'MmVhTd7VDGeowTYotyUyjTfzkweJokFNYStRpJmmF3oMrnijYy7XE9SyymFJVsn4ViUrSLKXvppG5G8j2fcgjLeS',
+  privateKeyBase58: 'F8v7zWWPTVPid1Gd6CidHe9815jNWZB6gQFYff3TsTWJ',
+  id: 'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
+  controller: 'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98'
+}
+
+const verifyCredential = async (
+  credential: Credential,
+  keyPair: CredentialKeyPair
+) => {
+  await GeneralIdentityService.verifyCredential(credential)
+}
 ```
 
 We will receive this response in case of error
@@ -557,21 +576,26 @@ We will receive this response in case of error
 
 # Class diagram
 
-![Captura de pantalla 2021-10-06 a las 11 33 21](https://user-images.githubusercontent.com/65024448/136177942-59c8562f-1833-4949-968e-b51f4e3e7967.png)
+![Captura de pantalla 2021-10-07 a las 13 01 44](https://user-images.githubusercontent.com/65024448/136372093-ae240c34-8e7e-4d2c-9c8f-586a773d4107.png)
 
 ## Running Tests
 
 To launch the tests you need to use one of the following scripts:
 
 Will install all repositories
+
 ```
 yarn install
 ```
+
 Will run all tests with jest
+
 ```
 yarn test
 ```
+
 Will run jest with the coverage report (this will create a new directory to be able to examine the report in more detail)
+
 ```
 yarn test-with-coverage
 ```

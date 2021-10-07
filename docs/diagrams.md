@@ -20,26 +20,33 @@ class Credential {
     context: str[]
     id: str
     type: str
-    issuer: str
+    issuer: str | Issuer
     issuanceData: str
     credentialSubject: CredentialSubject
     proof: PresentationProof
 }
 Credential <|-- Presentation
 CredentialSubject <|-- Credential
+Issuer <|-- Credential
 
 class CredentialSubject {
     <<interface>>
     id: str
-    alumniOf: str
+    (customizable): object
+}
+
+class Issuer {
+    <<interface>>
+    id: str
+    (customizable): object
 }
 
 class Presentation {
     <<interface>>
     context: str[]
     type: str[]
-    id?: string;
-    holder?: string;
+    id?: str;
+    holder?: str;
     verifiableCredential: Credential[]
     proof: PresentationProof
 }
@@ -59,16 +66,36 @@ Presentation <|-- PresentationProof
 
 class CredentialService {
     <<service>>
-    createCredential(credential: Credential) Promise(Credential | false)
-    verifyCredential(credential: Credential) Promise(boolean)
+    createCredential(credential: Credential, credentialKeyPair: CredentialKeyPair) Promise(Credential)
+    verifyCredential(credential: Credential, credentialKeyPair: CredentialKeyPair) Promise(VerifyCredentialResult)
 }
 Credential <-- CredentialService
 
+class CredentialKeyPair {
+    <<interface>>
+    publicKeyBase58: string
+    privateKeyBase58: string
+    id: string
+    controller: string
+}
+
+CredentialService <-- CredentialKeyPair
+
+class VerifyCredentialResult {
+    <<interface>>
+    verified: boolean
+    statusResult: object
+    results: []
+    error: object
+}
+
+CredentialService <-- VerifyCredentialResult
+
 class GeneralIdentityService {
     <<service>>
-    createDid(data: IdentityData, auth: Authority) Promise(boolean)
-    getUserDid() Promise(boolean)
-    updateDid() Promise(boolean)
+    createDid(data: IdentityData, auth: Authority) Promise(bool)
+    getUserDid() Promise(bool)
+    updateDid() Promise(bool)
 }
 IdentityData <-- GeneralIdentityService
 Authority <-- GeneralIdentityService
@@ -76,9 +103,9 @@ Authority <-- GeneralIdentityService
 class PresentationService {
     <<service>>
     createPresentation(verifiableCredential: Credential[], id: str, holder: str) Promise(Presentation)
-    signPresentation(presentation: Presentation, challenge: str) Promise(Presentation | boolean)
-    verifyPresentation(presentation: Presentation) Promise(boolean)
-    verifyUnsignedPresentation(presentation: Presentation) Promise(boolean)
+    signPresentation(presentation: Presentation, challenge: str) Promise(Presentation | bool)
+    verifyPresentation(presentation: Presentation) Promise(bool)
+    verifyUnsignedPresentation(presentation: Presentation) Promise(bool)
 }
 Presentation <-- PresentationService
 Credential <-- PresentationService
@@ -90,8 +117,8 @@ class Authority {
 
 class DidcommService {
     <<service>>
-    packMsg(message: string, issuerPrivateKey: Uint8Array, receiverKeyPair: KeyPair) Promise(string)
-    unPackMsg(packMsg: string, issuerKeyPair: KeyPair) Promise(IUnpackedMsg)
+    packMsg(message: str, issuerPrivateKey: Uint8Array, receiverKeyPair: KeyPair) Promise(str)
+    unPackMsg(packMsg: str, issuerKeyPair: KeyPair) Promise(IUnpackedMsg)
 }
 KeyPair <-- DidcommService
 IUnpackedMsg <-- DidcommService
@@ -105,9 +132,9 @@ class KeyPair {
 
 class IUnpackedMsg {
     <<interface>>
-    message: string
-    recipientKey: string
-    senderKey: string
-    nonRepudiableVerification: boolean
+    message: str
+    recipientKey: str
+    senderKey: str
+    nonRepudiableVerification: bool
 }
 ```
