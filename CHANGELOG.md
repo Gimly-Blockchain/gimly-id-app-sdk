@@ -5,9 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- [Add DIDcomm Service]()
+- [Fix credential service]()
+- [Add DIDcomm Service](https://gimly.atlassian.net/browse/GID-90)
 - [Add keychain test]()
-- [Add EtherIdentityService and WalletService Test]()
+- [Add EtherIdentityService and WalletService Test](https://gimly.atlassian.net/browse/GID-89)
 - [Add config and Fix Lint ]()
 - [Add function returns]()
 - [Add documentation]()
