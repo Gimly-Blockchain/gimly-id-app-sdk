@@ -1,8 +1,9 @@
 import * as base58 from 'base58-universal'
 import CredentialServices from '../services/CredentialService'
 import { Wallet } from 'ethers'
-import { CredentialKeyPair } from '../interfaces/types'
+
 import { credentialMock } from '../mocks/credentialMock'
+import { CredentialKeyPair } from '../interfaces/credentialService.interface'
 
 describe('CredentialService', () => {
   let wallet: Wallet

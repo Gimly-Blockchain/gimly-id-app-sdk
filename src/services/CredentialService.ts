@@ -1,13 +1,13 @@
 import vc from '@sphereon/rn-vc-js'
 
-import {
-  Credential,
-  CredentialKeyPair,
-  VerifyCredentialResult
-} from '../interfaces/types'
+import { Credential } from '../interfaces/types'
 import { EcdsaSecp256k1VerificationKey2019 } from '@sphereon/rn-ecdsa-secp256k1-verification-key-2019'
 import { EcdsaSecp256k1Signature2019 } from '@sphereon/rn-ecdsa-secp256k1-signature-2019'
 import documentLoader from '../utils/Documentloader'
+import {
+  CredentialKeyPair,
+  VerifyCredentialResult
+} from '../interfaces/credentialService.interface'
 
 export default class CredentialServices {
   public static async createCredential(
