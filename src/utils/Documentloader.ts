@@ -2,7 +2,7 @@ import { defaultDocumentLoader } from '@sphereon/rn-vc-js'
 import { extendContextLoader } from 'jsonld-signatures'
 import fetch from 'cross-fetch'
 
-import customContexts from './customContexts.json'
+import customContexts from '../resources/customContexts.json'
 import { Resolver as UniResolver } from '@sphereon/did-uni-client'
 
 const documentLoaderExtension = async (url: string) => {
