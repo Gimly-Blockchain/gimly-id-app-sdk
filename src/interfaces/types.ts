@@ -14,17 +14,17 @@ export interface Credential {
   issuanceDate: string
   credentialSubject: CredentialSubject
   proof?: PresentationProof
-  [x: string]: unknown
+  [custom: string]: unknown
 }
 
 export interface Issuer {
   id: string
-  [x: string]: unknown
+  [custom: string]: unknown
 }
 
 export interface CredentialSubject {
   id: string
-  [x: string]: unknown
+  [custom: string]: unknown
 }
 
 export interface Presentation {
