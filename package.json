@@ -24,6 +24,7 @@
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
     "ethr-did": "^2.1.4",
+    "jsonld-signatures": "^9.3.0",
     "react-native": "^0.65.1",
     "react-native-get-random-values": "^1.7.0",
     "react-native-keychain": "^7.0.0",
