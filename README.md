@@ -591,7 +591,7 @@ We will receive this response in case of error
 
 # Class diagram
 
-![Captura de pantalla 2021-10-07 a las 13 01 44](https://user-images.githubusercontent.com/65024448/136372093-ae240c34-8e7e-4d2c-9c8f-586a773d4107.png)
+![Captura de pantalla 2021-10-11 a las 18 24 30](https://user-images.githubusercontent.com/65024448/136823851-90c1d66f-b5f2-4b26-897d-f8457a896411.png)
 
 ## Running Tests
 
