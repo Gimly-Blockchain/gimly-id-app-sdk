@@ -80,6 +80,7 @@ class CredentialKeyPair {
 }
 
 CredentialService <-- CredentialKeyPair
+PresentationService <-- CredentialKeyPair
 
 class VerifyCredentialResult {
     <<interface>>
@@ -102,13 +103,22 @@ Authority <-- GeneralIdentityService
 
 class PresentationService {
     <<service>>
-    createPresentation(verifiableCredential: Credential[], id: str, holder: str) Promise(Presentation)
-    signPresentation(presentation: Presentation, challenge: str) Promise(Presentation | bool)
-    verifyPresentation(presentation: Presentation) Promise(bool)
-    verifyUnsignedPresentation(presentation: Presentation) Promise(bool)
+    createPresentation(credentials: Credential[]) Promise(Presentation)
+    signPresentation(presentation: Presentation,     credentialKeyPair: CredentialKeyPair, challenge: string) Promise(Presentation)
+    verifyPresentation(presentation: Presentation, credentialKeyPair: CredentialKeyPair, challenge: string) Promise(PresentationResult)
+    verifyUnsignedPresentation(presentation: Presentation, credentialKeyPair: CredentialKeyPair) Promise(VerifiedPresentation)
 }
 Presentation <-- PresentationService
 Credential <-- PresentationService
+
+class VerifiedPresentation {
+    <<interface>>
+    presentationResult: PresentationResult
+    verified: boolean
+    credentialResults: []
+    error: VerifyPresentationError
+}
+PresentationService <-- VerifiedPresentation
 
 class Authority {
     <<interface>>

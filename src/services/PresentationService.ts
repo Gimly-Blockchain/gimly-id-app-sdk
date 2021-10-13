@@ -1,80 +1,111 @@
 import vc from '@sphereon/rn-vc-js'
-import { v4 as uuid } from 'uuid'
 
-//TODO - Change repository
-//import Secp256k1KeyPair from '@sphereon/rn-secp256k1-key-pair'
-import { Presentation } from '../interfaces/types'
+import { EcdsaSecp256k1VerificationKey2019 } from '@sphereon/rn-ecdsa-secp256k1-verification-key-2019'
+import { EcdsaSecp256k1Signature2019 } from '@sphereon/rn-ecdsa-secp256k1-signature-2019'
+import { Credential, Presentation } from '../interfaces/types'
+import { CredentialKeyPair } from '../interfaces/credentialService.interface'
+import documentLoader from '../utils/Documentloader'
+import {
+  PresentationResult,
+  VerifiedPresentation
+} from '../interfaces/PresentationService.interface'
 
 export default class PresentationService {
   public static async createPresentation(
-    verifiableCredential: Credential[],
-    id: string,
-    holder: string
+    credentials: Credential[]
   ): Promise<Presentation> {
+    if (credentials.length <= 0) throw new Error('No credentials received')
+
     try {
       const presentationResult: Presentation = await vc.createPresentation({
-        verifiableCredential,
-        id,
-        holder
+        verifiableCredential: credentials
       })
       return presentationResult
     } catch (error) {
-      throw new Error('Create Credential Error')
+      throw new Error('Create Presentation Error')
     }
   }
 
   public static async signPresentation(
     presentation: Presentation,
+    credentialKeyPair: CredentialKeyPair,
     challenge: string
-  ): Promise<Presentation | boolean> {
-    const keyPair = await Secp256k1KeyPair.generate()
-    const suite = new Secp256k1KeyPair(keyPair)
+  ): Promise<Presentation> {
+    const keyPair = await EcdsaSecp256k1VerificationKey2019.generate(
+      credentialKeyPair
+    )
+    const suite = new EcdsaSecp256k1Signature2019({
+      key: keyPair
+    })
 
-    if (!keyPair || !suite) return false
+    if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
       const signedResult: Presentation = await vc.signPresentation({
         presentation,
         suite,
-        challenge
+        challenge,
+        documentLoader
       })
 
       return signedResult
     } catch (error) {
-      throw new Error('Create Credential Error')
+      throw new Error(`Sign Presentation Error: ${error}`)
     }
   }
 
   public static async verifyPresentation(
-    presentation: Presentation
-  ): Promise<boolean> {
-    const keyPair = await Secp256k1KeyPair.generate()
-    const suite = new Secp256k1KeyPair(keyPair)
-    const challenge = uuid()
+    presentation: Presentation,
+    credentialKeyPair: CredentialKeyPair,
+    challenge: string
+  ): Promise<PresentationResult> {
+    const keyPair = await EcdsaSecp256k1VerificationKey2019.generate(
+      credentialKeyPair
+    )
+    const suite = new EcdsaSecp256k1Signature2019({
+      key: keyPair
+    })
 
-    if (!keyPair || !suite) return false
+    if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
-      await vc.verify({ presentation, challenge, suite })
-      return true
+      const verifiedPresentation: VerifiedPresentation = await vc.verify({
+        challenge,
+        suite,
+        documentLoader,
+        presentation
+      })
+
+      return verifiedPresentation.presentationResult
     } catch (error) {
-      throw new Error('Verify Presentation Error')
+      throw new Error(`Verify Presentation Error: ${error}`)
     }
   }
 
   public static async verifyUnsignedPresentation(
-    presentation: Presentation
-  ): Promise<boolean> {
-    const keyPair = await Secp256k1KeyPair.generate()
-    const suite = new Secp256k1KeyPair(keyPair)
+    presentation: Presentation,
+    credentialKeyPair: CredentialKeyPair
+  ): Promise<VerifiedPresentation> {
+    const keyPair = await EcdsaSecp256k1VerificationKey2019.generate(
+      credentialKeyPair
+    )
+    const suite = new EcdsaSecp256k1Signature2019({
+      key: keyPair
+    })
 
-    if (!keyPair || !suite) return false
+    if (!keyPair || !suite) throw new Error('Missing keypair or suite')
 
     try {
-      await vc.verify({ presentation, suite, unsignedPresentation: true })
-      return true
+      const verifiedPresentation: VerifiedPresentation = await vc.verify({
+        documentLoader,
+        presentation,
+        suite,
+        unsignedPresentation: true
+      })
+
+      return verifiedPresentation
     } catch (error) {
-      throw new Error('Verify Unsigned Presentation Error')
+      throw new Error(`Verify Unsigned Presentation Error: ${error}`)
     }
   }
 }

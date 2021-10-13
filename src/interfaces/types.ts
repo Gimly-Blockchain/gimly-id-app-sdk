@@ -13,7 +13,7 @@ export interface Credential {
   issuer: string | Issuer
   issuanceDate: string
   credentialSubject: CredentialSubject
-  proof?: PresentationProof
+  proof?: PresentationProof[]
   [custom: string]: unknown
 }
 
@@ -33,7 +33,7 @@ export interface Presentation {
   id?: string
   holder?: string
   verifiableCredential: Credential[]
-  proof?: PresentationProof
+  proof?: PresentationProof[]
 }
 
 export interface PresentationProof {

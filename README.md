@@ -348,17 +348,20 @@ const credential: Credential = {
   proof: {
     type: 'EcdsaSecp256k1Signature2019',
     created: '2021-10-07T10:56:58Z',
-    verificationMethod:'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
+    verificationMethod:
+      'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
     proofPurpose: 'assertionMethod',
     jws: 'eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..Q_HvWN3cF4zqcLdlC9g2lDp522yqA-FyH3WHOtYAy-8af6urfy-CsWa2S30fzh1yv0A3DGt1LAr6ZW0NWxEz-A'
   }
 }
 
 const keyPair: CredentialKeyPair = {
-  publicKeyBase58: 'MmVhTd7VDGeowTYotyUyjTfzkweJokFNYStRpJmmF3oMrnijYy7XE9SyymFJVsn4ViUrSLKXvppG5G8j2fcgjLeS',
+  publicKeyBase58:
+    'MmVhTd7VDGeowTYotyUyjTfzkweJokFNYStRpJmmF3oMrnijYy7XE9SyymFJVsn4ViUrSLKXvppG5G8j2fcgjLeS',
   privateKeyBase58: 'F8v7zWWPTVPid1Gd6CidHe9815jNWZB6gQFYff3TsTWJ',
   id: 'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
-  controller: 'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98'
+  controller:
+    'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98'
 }
 
 const verifyCredential = async (
@@ -405,40 +408,33 @@ interface Presentation {
 ### Create presentation
 
 ```javascript
-import { GeneralIdentityService } from  'gimly-id-app-sdk'
+import { GeneralIdentityService } from 'gimly-id-app-sdk'
 
 const credential: Credential = {
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
+  '@context': [
+    'https://www.w3.org/2018/credentials/v1',
+    'https://www.w3.org/2018/credentials/examples/v1'
   ],
-  "id": "https://example.com/credentials/1872",
-  "type": ["VerifiableCredential", "AlumniCredential"],
-  "issuer": "https://example.edu/issuers/565049",
-  "issuanceDate": "2010-01-01T19:23:24Z",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-    "alumniOf": "Example University"
+  id: 'https://example.com/credentials/1872',
+  type: ['VerifiableCredential', 'AlumniCredential'],
+  issuer: 'https://example.edu/issuers/565049',
+  issuanceDate: '2010-01-01T19:23:24Z',
+  credentialSubject: {
+    id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+    alumniOf: 'Example University'
   },
-  "proof": {
-      "type": "RsaSignature2018",
-      "created": "2017-06-18T21:19:10Z",
-      "proofPurpose": "assertionMethod",
-      "verificationMethod": "https://example.edu/issuers/keys/1",
-      "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5X
-        sITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUc
-        X16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtj
-        PAYuNzVBAh4vGHSrQyHUdBBPM"
-    }
-};
+  proof: {
+    type: 'EcdsaSecp256k1Signature2019',
+    created: '2021-10-07T10:56:58Z',
+    verificationMethod:
+      'did:ethr:ropsten:0x028360fb95417724cb7dd2ff217b15d6f17fc45e0ffc1b3dce6c2b8dd1e704fa98#controllerKey',
+    proofPurpose: 'assertionMethod',
+    jws: 'eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..Q_HvWN3cF4zqcLdlC9g2lDp522yqA-FyH3WHOtYAy-8af6urfy-CsWa2S30fzh1yv0A3DGt1LAr6ZW0NWxEz-A'
+  }
+}
 
-// optional `id` and `holder`
-const createPresentation = async (
-  verifiableCredential: Credential[],
-  id?: string,
-  holder?: string
-) => {
-  await GeneralIdentityService.createPresentation(verifiableCredential, id, holder)
+const createPresentation = async (credentials: Credential[]) => {
+  await GeneralIdentityService.createPresentation(credential)
 }
 ```
 
@@ -480,9 +476,14 @@ const challenge = 'mychallengeword'
 
 const signPresentation = async (
   presentation: Presentation,
+  keyPair: CredentialKeyPair,
   challenge: string
 ) => {
-  await GeneralIdentityService.signPresentation(presentation, challenge)
+  await GeneralIdentityService.signPresentation(
+    presentation,
+    keyPair,
+    challenge
+  )
 }
 ```
 
@@ -527,8 +528,16 @@ const presentation: Presentation = {
   ]
 }
 
-const verifyPresentation = async (presentation: Presentation) => {
-  await GeneralIdentityService.verifyPresentation(presentation)
+const verifyPresentation = async (
+  presentation: Presentation,
+  keyPair: CredentialKeyPair,
+  challenge: string
+) => {
+  await GeneralIdentityService.verifyPresentation(
+    presentation,
+    keyPair,
+    challenge
+  )
 }
 ```
 
@@ -566,8 +575,14 @@ const presentation: Presentation = {
   ]
 }
 
-const verifyUnsignedPresentation = async (presentation: Presentation) => {
-  await GeneralIdentityService.verifyUnsignedPresentation(presentation)
+const verifyUnsignedPresentation = async (
+  presentation: Presentation,
+  credentialKeyPair: CredentialKeyPair
+) => {
+  await GeneralIdentityService.verifyUnsignedPresentation(
+    presentation,
+    credentialKeyPair
+  )
 }
 ```
 
@@ -579,7 +594,7 @@ We will receive this response in case of error
 
 # Class diagram
 
-![Captura de pantalla 2021-10-07 a las 13 01 44](https://user-images.githubusercontent.com/65024448/136372093-ae240c34-8e7e-4d2c-9c8f-586a773d4107.png)
+![Captura de pantalla 2021-10-11 a las 18 24 30](https://user-images.githubusercontent.com/65024448/136823851-90c1d66f-b5f2-4b26-897d-f8457a896411.png)
 
 ## Running Tests
 
