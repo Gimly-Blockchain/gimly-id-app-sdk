@@ -11,23 +11,22 @@ interface CustomContexts {
   }
 }
 
-const cmtrJsonld = Object.keys(customContexts)[0]
 const customContextTyped = customContexts as unknown as CustomContexts
 
 const documentLoaderExtension = async (url: string) => {
-  if (customContextTyped[cmtrJsonld]) {
+  if (customContextTyped[url]) {
     return new Promise(resolve =>
       resolve({
         contextUrl: null,
         documentUrl: url,
-        document: customContextTyped[cmtrJsonld]
+        document: customContextTyped[url]
       })
     )
   }
 
   if (url.includes('did:')) {
     const resolver = new UniResolver()
-    const { didDocument } = resolver.resolve(url)
+    const { didDocument } = await resolver.resolve(url)
     return {
       contextUrl: null,
       documentUrl: url,
