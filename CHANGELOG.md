@@ -5,6 +5,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Integrate Tangem SDK on the Gimly ID SDK]()
+- [add NFC Service](https://gimly.atlassian.net/browse/NDB-126)
+- [PresentationService - Fix and add test]()
 - [Fix credential service]()
 - [Add DIDcomm Service](https://gimly.atlassian.net/browse/GID-90)
 - [Add keychain test]()
