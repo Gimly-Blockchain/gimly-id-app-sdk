@@ -28,7 +28,7 @@
     "@sphereon/rn-ecdsa-secp256k1-verification-key-2019": "^0.1.2",
     "@sphereon/rn-vc-js": "^1.0.1-0",
     "DIDComm-js": "https://github.com/decentralized-identity/DIDComm-js.git",
-    "base58-universal": "^1.0.0",
+    "base58-universal": "https://github.com/emege93/base58-universal.git",
     "eosio-did": "^0.1.2",
     "ethers": "^5.4.6",
     "ethr-did": "^2.1.4",

@@ -2831,6 +2831,10 @@ base58-universal@^1.0.0:
   dependencies:
     esm "^3.2.25"
 
+"base58-universal@https://github.com/emege93/base58-universal.git":
+  version "1.0.1-0"
+  resolved "https://github.com/emege93/base58-universal.git#9c5c82eaddcace8b033a3e3308fa238a3174c2af"
+
 base64-js@^1.1.2, base64-js@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
