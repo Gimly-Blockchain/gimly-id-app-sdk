@@ -61,3 +61,6 @@ buck-out/
 # Jest
 .jest
 /coverage
+
+# generated files by bob
+lib/
