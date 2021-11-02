@@ -734,7 +734,7 @@ NfcService.removeNfcListener()
 
 # Class diagram
 
-![Captura de pantalla 2021-10-11 a las 18 24 30](https://user-images.githubusercontent.com/65024448/136823851-90c1d66f-b5f2-4b26-897d-f8457a896411.png)
+![Captura de pantalla 2021-11-02 a las 17 33 46](https://user-images.githubusercontent.com/65024448/139907710-a709a1e1-fbf5-409b-b71f-bd574c1800c0.png)
 
 ## Running Tests
 
