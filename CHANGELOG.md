@@ -5,6 +5,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [Add NFC Services documentation](https://gimly.atlassian.net/browse/NDB-126)
 - [Integrate Tangem SDK on the Gimly ID SDK]()
 - [add NFC Service](https://gimly.atlassian.net/browse/NDB-126)
 - [PresentationService - Fix and add test]()

@@ -147,4 +147,20 @@ class IUnpackedMsg {
     senderKey: str
     nonRepudiableVerification: bool
 }
+
+class NfcService {
+    <<service>>
+    startSession() Promise(void)
+    stopSession() Promise(void)
+    scanCard(initialMessage: InitialMessage) Promise(Card | null)
+    sign(hashes: [string], walletPublicKey: string, cardId: string, initialMessage: InitialMessage) Promise(SignResponse | null)
+    getStatus() Promise(NFCStatusResponse)
+    createWallet(cardId: string Promise(CreateWalletResponse | null)
+    purgeWallet(cardId: string, walletPublicKey: string) Promise(PurgeWalletResponse | null)
+    setPassCode(cardId: string) Promise(SetUserCodesResponse | null)
+    setAccessCode(cardId: string) Promise(SetUserCodesResponse | null)
+    resetUserCodes(cardId: string) Promise(SetUserCodesResponse | null)
+    nfcListener() (EmitterSubscription | undefined)
+    removeNfcListener(listener: EmitterSubscription) boolean
+}
 ```
