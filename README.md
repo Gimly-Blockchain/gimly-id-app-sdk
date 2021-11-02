@@ -592,6 +592,146 @@ We will receive this response in case of error
 // Verify Unsigned Presentation Error
 ```
 
+## NFC Service
+
+### Description
+
+The main functions of NFC service are to securely create and store a private key from a blockchain wallet and sign blockchain transactions.
+
+- [tangem-sdk-react-native](https://github.com/XRPL-Labs/tangem-sdk-react-native)
+
+### Usage
+
+#### Start/Stop Session
+
+Is needed before running any other method in android, calling this method will ask the user to enable the NFC in case of NFC disabled.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+NfcService.StartSession()
+// ...other methods
+NfcService.StopSession()
+```
+
+#### Scan card
+
+This method is needed to obtain information from the card. Optionally, if the card contains a wallet (private and public key pair), it proves that the wallet owns a private key that corresponds to a public one.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const initialMessage = {
+  header: '',
+  body: ''
+}
+
+NfcService.scanCard(initialMessage)
+```
+
+#### Sign
+
+Allows you to sign one or multiple hashes. The SIGN command will return a corresponding array of signatures.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const signProps = {
+  hashes: ['0xasdasd3d3d31dad1w'],
+  walletPublicKey: 'dsad131231dsad1d1d',
+  cardId: '1231d11as1',
+  initialMessage: { header: '', body: '' }
+}
+
+NfcService.sign(signProps)
+```
+
+#### NFC Status
+
+Will return current NFC Status which is supported on the device or is NFC enabled on the device.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+NfcService.getStatus()
+```
+
+#### Create Wallet
+
+will create a new wallet on the card. A key pair WalletPublicKey / WalletPrivateKey is generated and securely stored in the card.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const cardId = '1231d11as1'
+
+NfcService.createWallet(cardId)
+```
+
+#### Purge Wallet
+
+Deletes all wallet data.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const purgeWalletProps = {
+  cardId: '1231d11as1',
+  walletPublicKey: 'dsad131231dsad1d1d'
+}
+
+NfcService.purgeWallet(purgeWalletProps)
+```
+
+#### Set PassCode
+
+Allows to set or change passcode on the card. Passcode protects signing and operations that can alter security parameters. Passcode may be enabled or disabled during card configuration at the factory. Also, it’s possible to prohibit removing the passcode from the card once it’s set.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const cardId = '1231d11as1',
+
+NfcService.setPassCode(cardId)
+```
+
+#### Set AccessCode
+
+Allows to set or change acccessCode on the card. If Access code is set on the card, all commands, including Scan Card, will require to sumbit this code. So if the Access code is lost, there is no way to recover the data or even retrieve the public key. Access codes may be enabled or disabled during card configuration at the factory. Also, it’s possible to prohibit removing the access code from the card once it’s set.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const cardId = '1231d11as1',
+
+NfcService.setAccessCode(purgeWalletProps)
+```
+
+#### Reset User Codes
+
+Resets both access code and passcode if they were set.
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+const cardId = '1231d11as1',
+
+NfcService.resetUserCodes(purgeWalletProps)
+```
+
+#### Listen on events
+
+Should be able to add listener on the certain events
+
+```javascript
+import { NfcService } from 'gimly-id-app-sdk'
+
+NfcService.nfcListener()
+// ...
+NfcService.removeNfcListener()
+
+```
+
 # Class diagram
 
 ![Captura de pantalla 2021-10-11 a las 18 24 30](https://user-images.githubusercontent.com/65024448/136823851-90c1d66f-b5f2-4b26-897d-f8457a896411.png)
