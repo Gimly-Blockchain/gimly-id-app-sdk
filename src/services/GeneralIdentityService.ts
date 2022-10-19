@@ -29,14 +29,15 @@ export default class GeneralIdentityService {
     }
   }
 
-  public static async getUserDid(): Promise<boolean | boolean> {
+  public static async getUserDid(): Promise<string | null> {
     const did = await getDid()
-    if (!did) return false
+    if (!did) return null
 
     const eosioDid = new EosioDID({ fetch })
     const didResolveResult = await eosioDid.resolve(did)
 
-    return didResolveResult.didDocument
+    const didDocument = JSON.stringify(didResolveResult.didDocument)
+    return didDocument
   }
 
   public static async updateDid(

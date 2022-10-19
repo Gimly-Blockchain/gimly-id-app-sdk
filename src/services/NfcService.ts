@@ -145,8 +145,8 @@ export default class NfcService {
   }
 
   public static nfcListener(): EmitterSubscription | undefined {
-    return TangemSdk.addListener('NFCStateChange', (enabled: boolean) => {
-      console.log(enabled)
+    return TangemSdk.addListener('NFCStateChange', () => {
+      console.log('NFCStateChange')
     })
   }
 
