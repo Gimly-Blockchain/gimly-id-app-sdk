@@ -34,11 +34,11 @@ export default class NfcService {
     return await TangemSdk.scanCard(
       message ? ({ message } as OptionsCommon) : undefined
     )
-      .then(response => {
+      .then((response: Card) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
@@ -58,18 +58,18 @@ export default class NfcService {
     }
 
     return await TangemSdk.sign(options)
-      .then(response => {
+      .then((response: SignResponse) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
   }
 
   public static async getStatus(): Promise<NFCStatusResponse> {
-    return await TangemSdk.getNFCStatus().then(status => {
+    return await TangemSdk.getNFCStatus().then((status: NFCStatusResponse) => {
       return status
     })
   }
@@ -78,11 +78,11 @@ export default class NfcService {
     cardId: string
   ): Promise<CreateWalletResponse | null> {
     return await TangemSdk.createWallet({ cardId })
-      .then(response => {
+      .then((response: CreateWalletResponse) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
@@ -93,11 +93,11 @@ export default class NfcService {
     walletPublicKey: string
   ): Promise<PurgeWalletResponse | null> {
     return await TangemSdk.purgeWallet({ cardId, walletPublicKey })
-      .then(response => {
+      .then((response: PurgeWalletResponse) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
@@ -107,11 +107,11 @@ export default class NfcService {
     cardId: string
   ): Promise<SetUserCodesResponse | null> {
     return await TangemSdk.setPasscode({ cardId })
-      .then(response => {
+      .then((response: SetUserCodesResponse) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
@@ -121,11 +121,11 @@ export default class NfcService {
     cardId: string
   ): Promise<SetUserCodesResponse | null> {
     return TangemSdk.setAccessCode({ cardId })
-      .then(response => {
+      .then((response: SetUserCodesResponse) => {
         console.log(response)
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
@@ -135,17 +135,17 @@ export default class NfcService {
     cardId: string
   ): Promise<SetUserCodesResponse | null> {
     return await TangemSdk.resetUserCodes({ cardId })
-      .then(response => {
+      .then((response: SetUserCodesResponse) => {
         return response
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error)
         return null
       })
   }
 
   public static nfcListener(): EmitterSubscription | undefined {
-    return TangemSdk.addListener('NFCStateChange', enabled => {
+    return TangemSdk.addListener('NFCStateChange', (enabled: boolean) => {
       console.log(enabled)
     })
   }

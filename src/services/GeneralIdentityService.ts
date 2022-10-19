@@ -29,7 +29,7 @@ export default class GeneralIdentityService {
     }
   }
 
-  public static async getUserDid(): Promise<boolean | any> {
+  public static async getUserDid(): Promise<boolean | boolean> {
     const did = await getDid()
     if (!did) return false
 

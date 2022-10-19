@@ -16,7 +16,7 @@ export default class EtherIdentityService {
     }
   }
 
-  public static async getUserDid(): Promise<string | any> {
+  public static async getUserDid(): Promise<string | boolean> {
     const did = await getDid()
     if (!did) return false
 
